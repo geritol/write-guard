@@ -4,7 +4,8 @@
   "description": "Enforce file level write access for monorepos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha 'src/**/*.test.js'",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,20 @@
   "bugs": {
     "url": "https://github.com/geritol/write-guard/issues"
   },
-  "homepage": "https://github.com/geritol/write-guard#readme"
+  "homepage": "https://github.com/geritol/write-guard#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "mock-fs": "^4.12.0"
+  },
+  "dependencies": {
+    "@octokit/action": "^3.0.0",
+    "@octokit/graphql": "^4.5.1",
+    "ignore": "^5.1.8",
+    "js-yaml": "^3.14.0",
+    "micromatch": "^4.0.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
