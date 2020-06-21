@@ -1,0 +1,5 @@
+name: "write-guard"
+description: "Enforce file level write access for monorepos"
+runs:
+  using: "node12"
+  main: "src/index.js"
