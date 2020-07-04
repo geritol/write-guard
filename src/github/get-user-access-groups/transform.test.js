@@ -1,5 +1,5 @@
 const transform = require("./transform");
-const { expect } = require("../test-setup");
+const { expect } = require("../../test-setup");
 
 describe("get-user-access-groups/transform", () => {
   describe("when user in in the organization", () => {

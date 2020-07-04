@@ -25,56 +25,30 @@ describe("Config", () => {
     });
   });
 
-  describe("getAllowedGroups", () => {
-    it("should returns matching path groups", () => {
+  describe("getAllowedPaths", () => {
+    it("should return allowed paths for user", () => {
       const config = new Config({
         access: {
-          "**": ["users/a"],
-          "foo/**": ["users/b"],
-          "/aa/foo/bb": ["users/c"],
+          "**": ["user/a"],
+          "src/**": ["user/b"],
+          "dist/**": ["user/b"],
         },
       });
-      const allowedGroups = config.getAllowedGroups("foo/bar");
-      expect(allowedGroups).to.have.lengthOf(2);
+      const allowedGroups = config.getAllowedPaths("user/b");
+      expect(allowedGroups).to.deep.equal(["src/**", "dist/**"]);
     });
 
-    it("should flatten matching path groups", () => {
+    it("should resolve allowed paths for roles", () => {
       const config = new Config({
+        roles: { edit: ["user/a"] },
         access: {
-          "**": ["users/a", "users/c"],
+          "**": ["role/edit"],
+          "src/**": ["user/b"],
+          "dist/**": ["user/b"],
         },
       });
-      const allowedGroups = config.getAllowedGroups("foo/bar");
-      expect(allowedGroups).to.have.lengthOf(2);
-    });
-
-    ["user", "permission", "team"].forEach((type) =>
-      it(`should parse matching path group type and value - ${type}`, () => {
-        const config = new Config({
-          access: {
-            "**": [`${type}/a`],
-          },
-        });
-        const allowedGroups = config.getAllowedGroups("foo/bar");
-        expect(allowedGroups).to.deep.equal([{ type, value: "a" }]);
-      })
-    );
-
-    it("should resolve type role from roles", () => {
-      const config = new Config({
-        access: {
-          "**": [`role/a`],
-        },
-        roles: {
-          a: ["user/b", "team/c", "permission/d"],
-        },
-      });
-      const allowedGroups = config.getAllowedGroups("foo/bar");
-      expect(allowedGroups).to.deep.equal([
-        { type: "user", value: "b" },
-        { type: "team", value: "c" },
-        { type: "permission", value: "d" },
-      ]);
+      const allowedGroups = config.getAllowedPaths("user/a");
+      expect(allowedGroups).to.deep.equal(["**"]);
     });
   });
 });

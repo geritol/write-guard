@@ -4,8 +4,9 @@
   "description": "Enforce file level write access for monorepos",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'src/**/*.test.js'",
-    "test:watch": "npm run test -- --watch"
+    "test": "mocha 'src/**/*.test.js' --exclude 'src/**/*.integration.test.js'",
+    "test:watch": "npm run test -- --watch",
+    "test:integration": "mocha 'src/**/*.integration.test.js'"
   },
   "repository": {
     "type": "git",
@@ -24,14 +25,17 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.0.1",
-    "mock-fs": "^4.12.0"
+    "mock-fs": "^4.12.0",
+    "rimraf": "^3.0.2",
+    "sinon": "^9.0.2"
   },
   "dependencies": {
-    "@octokit/action": "^3.0.0",
     "@octokit/graphql": "^4.5.1",
+    "@octokit/rest": "^18.0.0",
     "dotenv": "^8.2.0",
     "ignore": "^5.1.8",
     "js-yaml": "^3.14.0",
+    "lodash.uniq": "^4.5.0",
     "micromatch": "^4.0.2"
   },
   "engines": {
