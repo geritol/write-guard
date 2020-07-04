@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha 'src/**/*.test.js' --exclude 'src/**/*.integration.test.js'",
     "test:watch": "npm run test -- --watch",
-    "test:integration": "mocha 'src/**/*.integration.test.js'"
+    "test:integration": "mocha 'src/**/*.integration.test.js'",
+    "build": "ncc build src/index.js"
   },
   "repository": {
     "type": "git",
