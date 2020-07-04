@@ -29,6 +29,7 @@
   "dependencies": {
     "@octokit/action": "^3.0.0",
     "@octokit/graphql": "^4.5.1",
+    "dotenv": "^8.2.0",
     "ignore": "^5.1.8",
     "js-yaml": "^3.14.0",
     "micromatch": "^4.0.2"
