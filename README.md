@@ -49,5 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: write-guard
-        uses: geritol/write-guard@v0.1.0
+        uses: geritol/write-guard@v0.1.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
