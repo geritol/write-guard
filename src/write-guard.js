@@ -1,8 +1,14 @@
 const Config = require("./config");
 const User = require("./user");
 const { getFilesChanged, getUserAccessGroups } = require("./github");
+const gitBranch = require("git-branch");
 
 module.exports = async (settings) => {
+  const branch = gitBranch.sync();
+  if (branch !== "master") {
+    throw new Error(`Expected to run in master branch, running on '${branch}'`);
+  }
+
   console.info(`Loading config from '${settings.configPath}'`);
   const config = Config.createFromFile(settings.configPath);
 
