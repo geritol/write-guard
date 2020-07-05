@@ -1,6 +1,6 @@
 const { graphql } = require("@octokit/graphql");
 
-module.exports = async ({ user, owner, repo, authorization }) => {
+module.exports = ({ user, owner, repo, authorization }) => {
   return graphql(
     `
       query getOrgRepoRights($user: String!, $owner: String!, $repo: String!) {

@@ -1,7 +1,5 @@
 const Config = require("./config");
 const User = require("./user");
-const path = require("path");
-const loadSettings = require("./load-settings");
 const { getFilesChanged, getUserAccessGroups } = require("./github");
 
 module.exports = async (settings) => {

@@ -8,7 +8,9 @@
     "test:watch": "npm run test -- --watch",
     "test:integration": "mocha 'src/**/*.integration.test.js'",
     "test:ci": "nyc --reporter=lcov mocha 'src/**/*.test.js'",
-    "build": "ncc build src/index.js"
+    "posttest": "npm run lint",
+    "build": "ncc build src/index.js",
+    "lint": "eslint . --config .eslintrc"
   },
   "repository": {
     "type": "git",
@@ -26,9 +28,16 @@
   "homepage": "https://github.com/geritol/write-guard#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-chai-expect": "^2.1.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-no-only-tests": "^2.4.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "mocha": "^8.0.1",
     "mock-fs": "^4.12.0",
     "nyc": "^15.1.0",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "sinon": "^9.0.2"
   },

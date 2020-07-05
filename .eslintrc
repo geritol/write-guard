@@ -1,0 +1,35 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["chai-friendly", "no-only-tests", "chai-expect", "prettier"],
+  "ignorePatterns": ["dist/**"],
+  "env": {
+    "es2017": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-only-tests/no-only-tests": "error",
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+    "curly": ["error", "multi-line"],
+    "array-callback-return": 2,
+    "no-eval": 2,
+    "no-extra-bind": 2,
+    "no-else-return": 2,
+    "no-implicit-globals": 2,
+    "radix": 2,
+    "no-self-compare": 2,
+    "no-useless-constructor": 2,
+    "object-shorthand": [2, "always"],
+    "prefer-arrow-callback": 2,
+    "prefer-const": 2,
+    "prefer-template": 2,
+    "require-await": 2,
+    "no-useless-return": 2,
+    "chai-expect/no-inner-compare": 2,
+    "chai-expect/no-inner-literal": 2,
+    "chai-expect/missing-assertion": 2,
+    "chai-expect/terminating-properties": 2
+  }
+}
