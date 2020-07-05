@@ -44,13 +44,17 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  write-guard:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: master # Important!
+          # write-guard needs to run on your master branch to prevent
+          # the possibility of pr openers self grant edit permissions
       - name: write-guard
-        uses: geritol/write-guard@v0.1.2
+        uses: geritol/write-guard@v0.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
