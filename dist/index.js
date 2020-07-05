@@ -13545,7 +13545,7 @@ module.exports = function isObject(val) {
 const writeGuard = __webpack_require__(994);
 const loadSettings = __webpack_require__(259);
 
-const error = (message) => {
+const exitWithError = (message) => {
   console.error(message);
   process.exit(1);
 };
@@ -13555,10 +13555,10 @@ const error = (message) => {
   try {
     var accessInfo = await writeGuard(settings);
   } catch (error) {
-    error(error.message);
+    exitWithError(error.message);
   }
   if (accessInfo.some((info) => !info.canWrite)) {
-    error(
+    exitWithError(
       `User '${settings.github.user}' has no write access to all files in pull request #${settings.github.prNumber}`
     );
   }
