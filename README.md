@@ -1,4 +1,5 @@
 ![Node.js CI](https://github.com/geritol/write-guard/workflows/Node.js%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/geritol/write-guard/branch/master/graph/badge.svg)](https://codecov.io/gh/geritol/write-guard)
 
 # Write-guard
 
