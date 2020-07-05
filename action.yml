@@ -3,3 +3,6 @@ description: "Enforce file level write access for monorepos"
 runs:
   using: "node12"
   main: "dist/index.js"
+branding:
+  icon: "shield"
+  color: "gray-dark"
