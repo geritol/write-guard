@@ -14,7 +14,7 @@ describe("writeGuard", () => {
 
     await expect(writeGuard(settings)).to.be.rejectedWith(
       Error,
-      "Expected to run in master branch, running on 'non-master'"
+      "Expected to run on master branch, running on 'non-master'"
     );
   });
 });
