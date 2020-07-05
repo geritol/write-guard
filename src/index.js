@@ -1,7 +1,10 @@
 const writeGuard = require("./write-guard");
 const loadSettings = require("./load-settings");
 
-const error = (message) => {};
+const error = (message) => {
+  console.error(message);
+  process.exit(1);
+};
 
 (async () => {
   const settings = loadSettings(".");
