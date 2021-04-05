@@ -53,6 +53,10 @@ jobs:
           ref: master # Important!
           # write-guard needs to run on your master branch to prevent
           # the possibility of pr openers self grant edit permissions
+          #
+          # the action will retrieve files changed in the current pr
+          # and validate write access based on the master branches
+          # write-guard.yaml
       - name: write-guard
         uses: geritol/write-guard@v0.2.0
         env:
