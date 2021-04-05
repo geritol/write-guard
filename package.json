@@ -10,12 +10,8 @@
     "test:ci": "nyc --reporter=lcov mocha 'src/**/*.test.js'",
     "posttest": "npm run lint",
     "build": "ncc build src/index.js",
-    "lint": "eslint . --config .eslintrc"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build && git add dist"
-    }
+    "lint": "eslint . --config .eslintrc",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -32,6 +28,7 @@
   },
   "homepage": "https://github.com/geritol/write-guard#readme",
   "devDependencies": {
+    "@vercel/ncc": "^0.27.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "eslint": "^7.23.0",
