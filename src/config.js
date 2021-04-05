@@ -22,7 +22,7 @@ class Config {
 
 Config.createFromFile = (filePath) => {
   const content = fs.readFileSync(filePath, "utf8");
-  const parsedContent = yaml.safeLoad(content);
+  const parsedContent = yaml.load(content);
   return new Config(parsedContent);
 };
 

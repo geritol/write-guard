@@ -7,7 +7,7 @@ describe("Config", () => {
   describe("createFromFile", () => {
     beforeEach(() => {
       mockFs({
-        "some-file": yaml.safeDump({ "test-content": "hello" }),
+        "some-file": yaml.dump({ "test-content": "hello" }),
       });
     });
     afterEach(() => {
