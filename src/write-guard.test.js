@@ -1,5 +1,5 @@
 const gitBranch = require("git-branch");
-const { getDefaultBranch } = require("./github");
+const GitHub = require("./github");
 const { expect, sinon } = require("./test-setup");
 
 describe("writeGuard", () => {
@@ -12,8 +12,8 @@ describe("writeGuard", () => {
     const stub = sinon.stub(gitBranch, "sync");
     stub.returns("non-main");
 
-    // const stub2 = sinon.stub(getDefaultBranch);
-    // stub2.resolves("main");
+    const stub2 = sinon.stub(GitHub, "getDefaultBranch");
+    stub2.resolves("main");
     const writeGuard = require("./write-guard");
 
     await expect(writeGuard(settings)).to.be.rejectedWith(
