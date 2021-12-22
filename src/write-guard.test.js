@@ -1,4 +1,5 @@
 const gitBranch = require("git-branch");
+const { getDefaultBranch } = require("./github");
 const { expect, sinon } = require("./test-setup");
 
 describe("writeGuard", () => {
@@ -6,15 +7,18 @@ describe("writeGuard", () => {
     sinon.restore();
   });
 
-  it("should throw an error when not running on master branch", async () => {
+  it("should throw an error when not running on default branch", async () => {
     const settings = {};
     const stub = sinon.stub(gitBranch, "sync");
-    stub.returns("non-master");
+    stub.returns("non-main");
+
+    // const stub2 = sinon.stub(getDefaultBranch);
+    // stub2.resolves("main");
     const writeGuard = require("./write-guard");
 
     await expect(writeGuard(settings)).to.be.rejectedWith(
       Error,
-      "Expected to run on master branch, running on 'non-master'"
+      "Expected to run on main branch, running on 'non-main'"
     );
   });
 });

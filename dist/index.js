@@ -40796,6 +40796,31 @@ module.exports = Config;
 
 /***/ }),
 
+/***/ 6620:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { Octokit } = __nccwpck_require__(5375);
+
+module.exports = async ({ owner, repo, authorization }) => {
+  const octokit = new Octokit({ auth: authorization });
+  const resp = await octokit.repos
+    .get({
+      owner,
+      repo,
+    })
+    .catch((error) => error);
+
+  if (resp instanceof Error) {
+    throw new Error(
+      `Can't get default branch name for ${owner}/${repo}: ${resp.message}`
+    );
+  }
+  return resp.data.default_branch;
+};
+
+
+/***/ }),
+
 /***/ 1298:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -40896,10 +40921,12 @@ module.exports = (result, user) => {
 
 const getFilesChanged = __nccwpck_require__(1298);
 const getUserAccessGroups = __nccwpck_require__(5229);
+const getDefaultBranch = __nccwpck_require__(6620);
 
 module.exports = {
   getFilesChanged,
   getUserAccessGroups,
+  getDefaultBranch,
 };
 
 
@@ -40997,13 +41024,20 @@ module.exports = User;
 
 const Config = __nccwpck_require__(4570);
 const User = __nccwpck_require__(658);
-const { getFilesChanged, getUserAccessGroups } = __nccwpck_require__(6697);
+const {
+  getFilesChanged,
+  getUserAccessGroups,
+  getDefaultBranch,
+} = __nccwpck_require__(6697);
 const gitBranch = __nccwpck_require__(1958);
 
 module.exports = async (settings) => {
   const branch = gitBranch.sync();
-  if (branch !== "master") {
-    throw new Error(`Expected to run on master branch, running on '${branch}'`);
+  const defaultBranch = await getDefaultBranch(settings.github);
+  if (branch !== defaultBranch) {
+    throw new Error(
+      `Expected to run on ${defaultBranch} branch, running on '${branch}'`
+    );
   }
 
   console.info(`Loading config from '${settings.configPath}'`);

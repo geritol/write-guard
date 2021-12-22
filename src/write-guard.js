@@ -1,12 +1,19 @@
 const Config = require("./config");
 const User = require("./user");
-const { getFilesChanged, getUserAccessGroups } = require("./github");
+const {
+  getFilesChanged,
+  getUserAccessGroups,
+  getDefaultBranch,
+} = require("./github");
 const gitBranch = require("git-branch");
 
 module.exports = async (settings) => {
   const branch = gitBranch.sync();
-  if (branch !== "master") {
-    throw new Error(`Expected to run on master branch, running on '${branch}'`);
+  const defaultBranch = await getDefaultBranch(settings.github);
+  if (branch !== defaultBranch) {
+    throw new Error(
+      `Expected to run on ${defaultBranch} branch, running on '${branch}'`
+    );
   }
 
   console.info(`Loading config from '${settings.configPath}'`);
