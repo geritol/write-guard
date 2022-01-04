@@ -11,7 +11,7 @@ module.exports = (runPath) => {
   return Object.freeze({
     configPath: path.join(runPath, "write-guard.yaml"),
     github: {
-      authorization: `Bearer  ${process.env.GITHUB_TOKEN}`,
+      authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       branch: process.env.GITHUB_REF,
       prNumber: event.pull_request.number,
       user: event.sender.login,
