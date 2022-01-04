@@ -26,3 +26,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets._GITHUB_TOKEN }}
       - uses: codecov/codecov-action@v1
+
+  test-generated-files: # make sure dist is generated properly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - run: npm ci
+      - run: npm run build
+      - run: git diff --exit-code
