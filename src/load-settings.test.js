@@ -11,6 +11,9 @@ describe("load-settings", () => {
           login: "geritol",
           type: "User",
         },
+        repository: {
+          default_branch: "main",
+        },
       }),
     });
     process.env.GITHUB_EVENT_PATH = "github/event.json";
@@ -33,5 +36,10 @@ describe("load-settings", () => {
       github: { repo },
     } = loadSettings(".");
     expect(repo).to.equal("foo");
+  });
+
+  it("should return default branch", () => {
+    const { defaultBranch } = loadSettings(".");
+    expect(defaultBranch).to.equal("main");
   });
 });

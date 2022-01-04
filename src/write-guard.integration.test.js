@@ -5,6 +5,7 @@ const { execSync } = require("child_process");
 const writeGuard = require("./write-guard");
 const { expect } = require("./test-setup");
 const loadSettings = require("./load-settings");
+const gitBranch = require("git-branch");
 
 const testRepoPath = path.join(process.cwd(), "write-guard-test");
 describe("writeGuard", () => {
@@ -23,6 +24,9 @@ describe("writeGuard", () => {
         sender: {
           login: "geritol",
           type: "User",
+        },
+        repository: {
+          default_branch: gitBranch.sync(),
         },
       })
     );
