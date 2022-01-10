@@ -1,6 +1,6 @@
-const User = require("./user");
-const { expect } = require("chai");
-const Config = require("./config");
+import User from "./user";
+import { expect } from "./test-setup";
+import Config from "./config";
 
 describe("User", () => {
   describe("hasAccess", () => {

@@ -2,16 +2,17 @@
   "name": "write-guard",
   "version": "0.3.0",
   "description": "Enforce file level write access for monorepos",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "mocha 'src/**/*.test.js' --exclude 'src/**/*.integration.test.js'",
+    "test": "mocha --require ts-node/register 'src/**/*.test.ts' --exclude 'src/**/*.integration.test.ts'",
     "test:watch": "npm run test -- --watch",
-    "test:integration": "mocha 'src/**/*.integration.test.js'",
-    "test:ci": "nyc --reporter=lcov mocha 'src/**/*.test.js'",
+    "test:integration": "mocha --require ts-node/register 'src/**/*.integration.test.ts'",
+    "test:ci": "nyc --reporter=lcov mocha --require ts-node/register 'src/**/*.test.ts'",
     "posttest": "npm run lint",
-    "build": "ncc build src/index.js",
+    "build": "ncc build src/index.ts",
     "lint": "eslint . --config .eslintrc",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,19 @@
   },
   "homepage": "https://github.com/geritol/write-guard#readme",
   "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/chai-as-promised": "^7.1.4",
+    "@types/git-branch": "^2.0.2",
+    "@types/js-yaml": "^4.0.5",
+    "@types/lodash.uniq": "^4.5.6",
+    "@types/micromatch": "^4.0.2",
+    "@types/mocha": "^9.0.0",
+    "@types/mock-fs": "^4.13.1",
+    "@types/node": "^17.0.8",
+    "@types/rimraf": "^3.0.2",
+    "@types/sinon": "^10.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
     "@vercel/ncc": "^0.33.1",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
@@ -45,6 +59,7 @@
     "rimraf": "^3.0.2",
     "sinon": "^12.0.1",
     "ts-migrate": "^0.1.27",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "dependencies": {

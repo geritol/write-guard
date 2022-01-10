@@ -1,9 +1,12 @@
-const loadSettings = require("./load-settings");
-const mock = require("mock-fs");
-const { expect } = require("./test-setup");
+import loadSettings from "./load-settings";
+import * as mock from "mock-fs";
+import { expect } from "./test-setup";
+
+const originalGithubToken = process.env.GITHUB_TOKEN;
 
 describe("load-settings", () => {
   before(() => {
+    process.env.GITHUB_TOKEN = "test";
     mock({
       "github/event.json": JSON.stringify({
         pull_request: { number: 1 },
@@ -20,6 +23,7 @@ describe("load-settings", () => {
   });
   after(() => {
     mock.restore();
+    process.env.GITHUB_TOKEN = originalGithubToken;
   });
 
   it("should return owner", () => {

@@ -1,9 +1,12 @@
-const Config = require("./config");
-const User = require("./user");
-const { getFilesChanged, getUserAccessGroups } = require("./github");
-const gitBranch = require("git-branch");
+import Config from "./config";
+import User from "./user";
+import { getFilesChanged, getUserAccessGroups } from "./github";
+import * as gitBranch from "git-branch";
+import { Settings } from "./load-settings";
 
-module.exports = async (settings) => {
+export type AccessInfo = { canWrite: boolean; file: string };
+
+export default async (settings: Settings): Promise<AccessInfo[]> => {
   const branch = gitBranch.sync();
   if (branch !== settings.defaultBranch) {
     throw new Error(

@@ -1,5 +1,5 @@
-const gitBranch = require("git-branch");
-const { expect, sinon } = require("./test-setup");
+import * as gitBranch from "git-branch";
+import { expect, sinon } from "./test-setup";
 
 describe("writeGuard", () => {
   afterEach(() => {
@@ -10,9 +10,10 @@ describe("writeGuard", () => {
     const settings = { defaultBranch: "master" };
     const stub = sinon.stub(gitBranch, "sync");
     stub.returns("non-master");
+    //eslint-disable-next-line @typescript-eslint/no-var-requires
     const writeGuard = require("./write-guard");
 
-    await expect(writeGuard(settings)).to.be.rejectedWith(
+    await expect(writeGuard.default(settings)).to.be.rejectedWith(
       Error,
       "Expected to run on master branch, running on 'non-master'"
     );
