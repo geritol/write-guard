@@ -51,9 +51,12 @@ describe("event.json", () => {
   it("contains all required information", () => {
     const event = JSON.parse(fs.readFileSync(githubEventPath, "utf8"));
 
-    expect(event.pull_request.number).to.be.a("number");
     expect(event.repository.default_branch).to.be.a("string");
     expect(event.sender.login).to.be.a("string");
     expect(event.sender.type).be.a("string");
+
+    if (process.env.IS_PR === "true") {
+      expect(event.pull_request.number).to.be.a("number");
+    }
   });
 });

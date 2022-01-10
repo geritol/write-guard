@@ -25,6 +25,7 @@ jobs:
       - run: npm run test:ci
         env:
           GITHUB_TOKEN: ${{ secrets._GITHUB_TOKEN }}
+          IS_PR: ${{ github.event.pull_request.state == 'open' }}
       - uses: codecov/codecov-action@v1
 
   test-generated-files: # make sure dist is generated properly
