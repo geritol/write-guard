@@ -1,6 +1,6 @@
 {
   "name": "write-guard",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Enforce file level write access for monorepos",
   "main": "index.ts",
   "scripts": {

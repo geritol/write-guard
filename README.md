@@ -58,7 +58,7 @@ jobs:
           # and validate write access based on the master branches
           # write-guard.yaml
       - name: write-guard
-        uses: geritol/write-guard@v0.3.0
+        uses: geritol/write-guard@v0.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
