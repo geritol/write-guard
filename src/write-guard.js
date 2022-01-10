@@ -5,8 +5,10 @@ const gitBranch = require("git-branch");
 
 module.exports = async (settings) => {
   const branch = gitBranch.sync();
-  if (branch !== "master") {
-    throw new Error(`Expected to run on master branch, running on '${branch}'`);
+  if (branch !== settings.defaultBranch) {
+    throw new Error(
+      `Expected to run on ${settings.defaultBranch} branch, running on '${branch}'`
+    );
   }
 
   console.info(`Loading config from '${settings.configPath}'`);

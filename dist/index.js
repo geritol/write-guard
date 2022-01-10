@@ -39559,6 +39559,7 @@ module.exports = (runPath) => {
 
   return Object.freeze({
     configPath: path.join(runPath, "write-guard.yaml"),
+    defaultBranch: event.repository.default_branch,
     github: {
       authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       branch: process.env.GITHUB_REF,
@@ -39613,8 +39614,10 @@ const gitBranch = __nccwpck_require__(1958);
 
 module.exports = async (settings) => {
   const branch = gitBranch.sync();
-  if (branch !== "master") {
-    throw new Error(`Expected to run on master branch, running on '${branch}'`);
+  if (branch !== settings.defaultBranch) {
+    throw new Error(
+      `Expected to run on ${settings.defaultBranch} branch, running on '${branch}'`
+    );
   }
 
   console.info(`Loading config from '${settings.configPath}'`);

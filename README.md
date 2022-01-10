@@ -7,7 +7,7 @@ Enforce file level write access for monorepos
 
 ## Usage
 
-Write-guard is designed to enforce file level write access for monorepos that have protected `master` branches with
+Write-guard is designed to enforce file level write access for monorepos that have protected default branches (usually `main` or `master`) with
 
 - Restrict push enabled
 - Require status checks to pass before merging

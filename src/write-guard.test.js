@@ -6,8 +6,8 @@ describe("writeGuard", () => {
     sinon.restore();
   });
 
-  it("should throw an error when not running on master branch", async () => {
-    const settings = {};
+  it("should throw an error when not running on default branch", async () => {
+    const settings = { defaultBranch: "master" };
     const stub = sinon.stub(gitBranch, "sync");
     stub.returns("non-master");
     const writeGuard = require("./write-guard");
