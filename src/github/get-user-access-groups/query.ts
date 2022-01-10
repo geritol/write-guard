@@ -1,6 +1,16 @@
-const { graphql } = require("@octokit/graphql");
+import { graphql } from "@octokit/graphql";
 
-module.exports = ({ user, owner, repo, authorization }) => {
+export default ({
+  user,
+  owner,
+  repo,
+  authorization,
+}: {
+  user: string;
+  owner: string;
+  repo: string;
+  authorization: string;
+}) => {
   return graphql(
     `
       query getOrgRepoRights($user: String!, $owner: String!, $repo: String!) {

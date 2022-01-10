@@ -1,13 +1,13 @@
-const path = require("path");
-const fs = require("fs");
-const rimraf = require("rimraf");
-const { execSync } = require("child_process");
-const writeGuard = require("./write-guard");
-const { expect } = require("./test-setup");
-const loadSettings = require("./load-settings");
-const gitBranch = require("git-branch");
+import * as path from "path";
+import * as fs from "fs";
+import * as rimraf from "rimraf";
+import { execSync } from "child_process";
+import writeGuard from "./write-guard";
+import { expect } from "./test-setup";
+import loadSettings from "./load-settings";
+import * as gitBranch from "git-branch";
 
-const githubEventPath = process.env.GITHUB_EVENT_PATH;
+const githubEventPath = process.env.GITHUB_EVENT_PATH as string;
 const testRepoPath = path.join(process.cwd(), "write-guard-test");
 
 describe("writeGuard", () => {

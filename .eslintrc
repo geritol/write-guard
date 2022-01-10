@@ -1,6 +1,18 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
-  "plugins": ["chai-friendly", "no-only-tests", "chai-expect", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "chai-friendly",
+    "no-only-tests",
+    "chai-expect",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
   "ignorePatterns": ["dist/**"],
   "env": {
     "es2017": true,

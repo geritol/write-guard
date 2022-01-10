@@ -1,4 +1,4 @@
-module.exports = (result, user) => {
+export default (result: any, user: string) => {
   const teams = result.user.organization
     ? Object.values(result.user.organization.teams.edges[0].node).map(
         (slug) => `team/${slug}`

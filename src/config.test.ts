@@ -1,7 +1,7 @@
-const Config = require("./config");
-const yaml = require("js-yaml");
-const mockFs = require("mock-fs");
-const { expect } = require("./test-setup");
+import Config from "./config";
+import * as yaml from "js-yaml";
+import * as mockFs from "mock-fs";
+import { expect } from "./test-setup";
 
 describe("Config", () => {
   describe("createFromFile", () => {
